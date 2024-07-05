@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+        <link href='{{ url_for("static", path="output.css") }}' rel="stylesheet">
+        <script src='{{ url_for("static", path="script.js") }}' defer></script>
+        <style>
+        .loader {
+        width: 48px;
+        height: 48px;
+        border: 5px solid rgb(59 130 246);
+        border-bottom-color: transparent;
+        border-radius: 50%;
+        display: inline-block;
+        box-sizing: border-box;
+        animation: rotation 1s linear infinite;
+        }
+
+        @keyframes rotation {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+        }
+        </style>
+    </head>
+    <body class="bg-gray-50">
+        <div class="flex justify-center">
+            <div class="rounded-2xl shadow-lg p-10 my-20 bg-white">
+                <p class="text-center mb-4 text-2xl font-semibold">AI Podcast analyzer</p>
+                <form class="mb-4">
+                    <p class="text-start mb-1 mx-2"><span class="text-rose-500">*</span> Description <span id="required" class="hidden text-rose-500 font-semibold">(required)</span></p>
+                    <textarea id="description" class="rounded-md shadow-md w-96 h-48 mb-3 border-2 border-blue-300 p-2 px-3 focus:border-blue-400" type="text" placeholder="Today in this video over tea we will discuss..."></textarea>
+                    <p class="text-start mb-1 mx-2">Link to YouTube channel</p>
+                    <input id="link" class="rounded-md shadow-md w-96 h-10 border-2 border-blue-300 p-2 focus:border-blue-400" type="text" placeholder="https://www.youtube.com/@MrBeast">
+                </form>
+                <div class="flex justify-center">
+                    <button class="rounded-md bg-blue-500 p-2 px-6 mt-2" id="button-get">
+                        <p class="text-white font-semibold">Analyze</p>
+                    </button>
+                </div>
+                <div class="justify-center mt-7 hidden" id="loading">
+                    <span class="loader"></span>
+                </div>
+                <div class="w-96 mt-7 hidden" id="output">
+                    <p class="text-center text-2xl font-semibold mb-3">You will get <span id="views">179</span> views</p>
+                    <p class="text-center font-semibold">Our recommendations for improvement</p>
+                    <p class="text-center p-2" id="recommendations"></p>
+                    <div class="flex justify-center">
+                        <button class="rounded-md bg-rose-500 p-2 px-6 mt-2" id="button-clear">
+                            <p class="text-white font-semibold">Clear</p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="hidden bg-blue-400 bg-rose-400"></div>
+    </body>
+</html>
