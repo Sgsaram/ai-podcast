@@ -34,7 +34,7 @@ async def read_root(request: fastapi.Request):
     return templates.TemplateResponse(name="index.html", request=request)
 
 
-@app.post("/process/", response_model=SummationResponse)
+@app.post("/process", response_model=SummationResponse)
 async def get_summation(podcast_desc: PodcastDesc):
     if len(podcast_desc.description) == 0:
         return fastapi.HTTPException(400, "No description provided")

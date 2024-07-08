@@ -38,7 +38,8 @@ async function handle_button_get() {
     };
 
     views.textContent = -179;
-    recommendations.textContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sagittis sapien elit, sed elementum nisl rhoncus congue. Quisque a vestibulum justo, ac sollicitudin mi. In viverra aliquam ex viverra ullamcorper. Suspendisse mauris ligula, malesuada in arcu vitae, ultrices pharetra purus. Duis posuere dolor eu ante rutrum tincidunt. Integer cursus, ex.";
+    let text_to_print = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sagittis sapien elit, sed elementum nisl rhoncus congue. Quisque a vestibulum justo, ac sollicitudin mi. In viverra aliquam ex viverra ullamcorper. Suspendisse mauris ligula, malesuada in arcu vitae, ultrices pharetra purus. Duis posuere dolor eu ante rutrum tincidunt. Integer cursus, ex.";
+    recommendations.textContent = "";
 
     try {
         const response = await fetch(api_url, {
@@ -50,7 +51,7 @@ async function handle_button_get() {
         })
         const result = await response.json();
         views.textContent = result.views;
-        recommendations.textContent = result.recommendation;
+        text_to_print = result.recommendation;
     } catch(error) {
         console.error("Error:", error);
         console.log("Reload the page");
@@ -59,6 +60,10 @@ async function handle_button_get() {
     loading.classList.add("hidden");
     loading.classList.remove("flex");
     output.classList.remove("hidden");
+    for (let i = 0; i < text_to_print.length; i++) {
+        recommendations.textContent += text_to_print[i];
+        await sleep(1);
+    }
 }
 
 button_get.addEventListener("click", handle_button_get);
