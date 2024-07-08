@@ -72,7 +72,6 @@ button_clear.addEventListener(
     () => {
         output.classList.add("hidden");
         button_get.classList.remove("hidden")
-        description.value = "";
     }
 );
 description.addEventListener(
