@@ -8,11 +8,13 @@ import fastapi.templating
 
 import pydantic
 
-from models_api.main_module import ModelModule
+# WARNING: Uncomment this section for PROD mode
+
+# from models_api.main_module import ModelModule
 
 BASE_DIR = os.path.dirname(os.path.realpath(__file__));
-TEST_VIEWS = random.randint(1, 200)
-TEST_RECOMMENDATION = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy."
+TEST_VIEWS = "SERVER"
+TEST_RECOMMENDATION = "Topic: Really Bit Ctick You Have Never Seen Before\n\nAnalysis:\n\n    Current popularity: Medium\n    Trends: The title's use of \"bit\" and \"ctick\" suggests that it may be related to the growing trend of niche content focused on specific topics or skills. Additionally, the title's uniqueness and curiosity-driven nature could attract viewers looking for something new and interesting.\n\nSuggestions to Maximize Listeners:\n\n1. Emphasize the unique aspect: Highlight what makes this \"bit\" so special and different from others in the description, tags, and social media promotions.\n2. Target specific audiences: Use relevant keywords and hashtags to reach viewers interested in niche topics or skills related to the content.\n3. Create engaging thumbnails: Design eye-catching thumbnails that showcase the unusual nature of the content and entice viewers to click.\n\nAs a good idea for podcast:\n\n* The topic's uniqueness could generate significant interest, especially if it appeals to a specific audience.\n* With 24.6 million subscribers, there is already a large potential audience for this type of content.\n* By emphasizing the unique aspect and targeting relevant audiences, the podcast has a high chance of attracting more listeners.\n\nHowever, please note that the provided description does not provide much insight into the actual content of the podcast. It's crucial to create engaging and informative content to keep viewers interested in the long run."
 
 cat2id = {
    "Film & Animation": 1,
@@ -62,7 +64,10 @@ class SummationResponse(pydantic.BaseModel):
     views: str
     recommendation: str
 
-module = ModelModule()
+
+# WARNING: Uncomment this section for PROD mode
+
+# module = ModelModule()
 
 app = fastapi.FastAPI()
 
@@ -82,15 +87,24 @@ async def get_summation(podcast_desc: PodcastDesc):
     if len(podcast_desc.title) == 0:
         return fastapi.HTTPException(400, "No description provided")
     
-    result = module.get_result(title=podcast_desc.title, 
-                               description=podcast_desc.description,
-                               tags=podcast_desc.tags,
-                               link=podcast_desc.link,
-                               category=cat2id[podcast_desc.category])
+    # WARNING: Uncomment this section for PROD mode
+
+    # result = module.get_result(title=podcast_desc.title, 
+    #                            description=podcast_desc.description,
+    #                            tags=podcast_desc.tags,
+    #                            link=podcast_desc.link,
+    #                            category=cat2id[podcast_desc.category])
+
+    # WARNING: Uncomment this section for PROD mode
+
+    # response = SummationResponse(
+    #     views=result['views_prediction'],
+    #     recommendation=result['llama_response'],
+    # )
 
     response = SummationResponse(
-        views=result['views_prediction'],
-        recommendation=result['llama_response'],
+        views=TEST_VIEWS,
+        recommendation=TEST_RECOMMENDATION,
     )
     return response
 
