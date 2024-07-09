@@ -13,14 +13,15 @@ SYSTEM_PROMPT = '''You are an AI assistant that helps users determine the popula
 
     Analysis:
 
-        Current popularity: [High/Medium/Low]
+        Current popularity: [High/Moderate/Low]
         Trends: [Describe any relevant trends]
 
     Suggestions to Maximize Listeners:
 
         [Suggestion 1]
         [Suggestion 2]
-        [Suggestion 3]'''
+        [Suggestion 3]
+        '''
 
 
 def complete_request(prompt: str, predicted_views_count: int, subscriber_count: int, title: str) -> str:

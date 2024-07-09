@@ -12,7 +12,7 @@ youtube = build('youtube', 'v3', developerKey=API_KEY)
 
 
 def _get_channel_id_from_url(url):
-    try:
+    try: # if url is invalid
         response = requests.get(url)
     except:
         return None
