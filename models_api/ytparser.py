@@ -12,7 +12,11 @@ youtube = build('youtube', 'v3', developerKey=API_KEY)
 
 
 def _get_channel_id_from_url(url):
-    response = requests.get(url)
+    try: # if url is invalid
+        response = requests.get(url)
+    except:
+        return None
+    
     soup = BeautifulSoup(response.content, 'html.parser')
     
     # Find the meta tag that contains the channel ID
@@ -31,6 +35,9 @@ def _get_channel_statistics(channel_id: str) -> tuple[dict, str]:
     )
     
     response = request.execute()
+    if 'items' not in response:
+        return None, None
+
     item = response['items'][0]
 
     statistics = item['statistics']
@@ -46,6 +53,10 @@ def _get_last_ten_videos(uploads_playlist_id: list[str]) -> list[str]:
         maxResults=50
     )
     response = request.execute()
+
+    if 'items' not in response:
+        return None
+    
     video_ids = [item['contentDetails']['videoId'] for item in response['items']]
     return video_ids
 
@@ -74,17 +85,20 @@ def _parse_url(url: str) -> dict:
 
 def get_channel_data(channel_url: str) -> dict:
 
-    channel_id = _parse_url(channel_url)
-
     data = {'subscriber_count': 0,
         'channel_view_count': 0,
         'channel_video_count': 0}
     for i in range(10):
             data[f'view_count_{i}'] = 0
 
-    
-    
+    channel_id = _parse_url(channel_url)
+    if channel_id is None:
+        return data
+
     statistics, uploads_playlist_id = _get_channel_statistics(channel_id)
+    if statistics is None or uploads_playlist_id is None:
+        return data
+
 #    print(len(statistics), len(channel_ids))
         
 #       print(statistics)
@@ -93,12 +107,19 @@ def get_channel_data(channel_url: str) -> dict:
     subscriber_count = statistics.get('subscriberCount', 0)
     channel_view_count = statistics.get('viewCount', 0)
     channel_video_count = statistics.get('videoCount', 0)
-    last_ten_videos = _get_last_ten_videos(uploads_playlist_id)
-    view_counts = _get_video_stats(last_ten_videos)
 
     data['subscriber_count'] = int(subscriber_count)
     data['channel_view_count'] = int(channel_view_count)
     data['channel_video_count'] = int(channel_video_count)
+
+    last_ten_videos = _get_last_ten_videos(uploads_playlist_id)
+
+    if last_ten_videos is None:
+        return data
+    else:
+       view_counts = _get_video_stats(last_ten_videos)
+
+    
 
     for j in range(10):
         last_j = 0

@@ -112,6 +112,8 @@ class ModelModule:
 
         def get_average_embedding(tags):
             embeddings = [nlp(tag).vector for tag in tags]
+            if len(embeddings) == 0: # if no tags provided
+                return np.zeros(300)
             avg_embedding = np.mean(embeddings, axis=0)
             return avg_embedding
 
