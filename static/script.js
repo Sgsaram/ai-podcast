@@ -3,8 +3,10 @@ const button_clear = document.getElementById("button-clear");
 const output = document.getElementById("output");
 const loading = document.getElementById("loading");
 const description = document.getElementById("description");
+const title = document.getElementById("title");
 const link = document.getElementById("link");
-const required = document.getElementById("required");
+const required_title = document.getElementById("required-title");
+const required_desc = document.getElementById("required-desc");
 const views = document.getElementById("views");
 const recommendations = document.getElementById("recommendations");
 const new_tag = document.getElementById("new-tag");
@@ -13,6 +15,7 @@ const tags = document.getElementById("tags");
 const api_url = "http://127.0.0.1:8000/process"
 
 let bad_desc = false;
+let bad_title = false;
 let tags_list = [];
 
 function get_html_tags() {
@@ -44,14 +47,33 @@ function sleep(ms) {
 
 async function handle_button_get() {
     const input_text = description.value;
+    const title_text = title.value;
+    let exit_flag = false;
     if (input_text.trim().length == 0) {
         description.classList.add("border-rose-500");
         description.classList.remove("border-blue-400");
-        required.classList.remove("hidden");
+        required_desc.classList.remove("hidden");
         bad_desc = true;
+        exit_flag = true;
+    }
+    if (title_text.trim().length == 0) {
+        title.classList.add("border-rose-500");
+        title.classList.remove("border-blue-400");
+        required_title.classList.remove("hidden");
+        bad_title = true;
+        exit_flag = true;
+    }
+    if (exit_flag) {
         return;
     }
     const link_text = link.value;
+    const radio_buttons = document.querySelectorAll('input[name="options"]');
+    let category_text = null;
+    radio_buttons.forEach(radio => {
+        if (radio.checked) {
+            category_text = radio.id;
+        }
+    })
 
     output.classList.add("hidden");
     loading.classList.add("flex");
@@ -59,8 +81,11 @@ async function handle_button_get() {
     button_get.classList.add("hidden");
 
     const post_data = {
+        title: title_text,
         description: input_text,
+        tags: tags_list,
         link: link_text,
+        category: category_text,
     };
 
     views.textContent = -179;
@@ -104,10 +129,21 @@ description.addEventListener(
     "click",
     () => {
         if (bad_desc) {
-            required.classList.add("hidden");
+            required_desc.classList.add("hidden");
             description.classList.add("border-blue-400");
             description.classList.remove("border-rose-500");
             bad_desc = false;
+        }
+    }
+)
+title.addEventListener(
+    "click",
+    () => {
+        if (bad_title) {
+            required_title.classList.add("hidden");
+            title.classList.add("border-blue-400");
+            title.classList.remove("border-rose-500");
+            bad_title = false;
         }
     }
 )

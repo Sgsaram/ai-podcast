@@ -30,17 +30,21 @@
     </head>
     <body class="bg-gray-50">
         <div class="flex justify-center">
-            <div class="rounded-2xl shadow-lg p-10 my-20 bg-white">
+            <div class="rounded-2xl shadow-lg p-10 my-20 bg-white mx-5">
                 <p class="text-center mb-4 text-2xl font-semibold">AI Podcast analyzer</p>
-                <form>
-                    <p class="text-start mb-1 mx-2"><span class="text-rose-500">*</span> Description <span id="required" class="hidden text-rose-500 font-semibold">(required)</span></p>
-                    <textarea id="description" class="focus:outline-none rounded-md shadow-md w-96 h-48 mb-3 border-2 border-blue-400 p-2 px-3 focus:border-blue-500" type="text" placeholder="Today in this video over tea we will discuss..."></textarea>
+                <form class="px-5 mb-3">
+                    <p class="text-start mb-1 mx-2"><span class="text-rose-500">*</span> Title <span id="required-title" class="hidden text-rose-500 font-semibold">(required)</span></p>
+                    <input id="title" class="focus:outline-none rounded-md shadow-md w-full max-w-[32rem] h-10 border-2 border-blue-400 p-2 focus:border-blue-500" type="text" placeholder="Elon Musk about self-discipline">
+                </form>
+                <form class="px-5">
+                    <p class="text-start mb-1 mx-2"><span class="text-rose-500">*</span> Description <span id="required-desc" class="hidden text-rose-500 font-semibold">(required)</span></p>
+                    <textarea id="description" class="focus:outline-none rounded-md shadow-md w-full max-w-[32rem] h-48 mb-3 border-2 border-blue-400 p-2 px-3 focus:border-blue-500" type="text" placeholder="Today in this video over tea we will discuss..."></textarea>
                 </form>
                 <form class="mb-4">
                     <p class="text-start mb-1 mx-3">Add tag</p>
-                    <input id="new-tag" class="focus:outline-none rounded-md shadow-md w-96 h-10 border-2 border-violet-400 p-2 focus:border-violet-500" type="text" placeholder="Press <Enter> to add a tag">
+                    <input id="new-tag" class="focus:outline-none rounded-md shadow-md w-full max-w-[32rem] h-10 border-2 border-violet-400 p-2 focus:border-violet-500" type="text" placeholder="Press <Enter> to add a tag">
                 </form>
-                <div id="tags" class="px-3 pb-2 w-96 flex flex-wrap justify-center">
+                <div id="tags" class="px-3 pb-2 w-full max-w-[32rem] flex flex-wrap justify-center">
                     <!-- <span class="rounded-2xl bg-violet-500 p-1 px-5 mx-1 my-1"><span class="text-white font-semibold text-sm">Nigger</span></span> -->
                     <!-- <span class="rounded-2xl bg-violet-500 p-1 px-5 mx-1 my-1"><span class="text-white font-semibold text-sm">Business</span></span> -->
                     <!-- <span class="rounded-2xl bg-violet-500 p-1 px-5 mx-1 my-1"><span class="text-white font-semibold text-sm">Bruh</span></span> -->
@@ -49,11 +53,11 @@
                 </div>
                 <form class="mb-4 mt-3">
                     <p class="text-start mb-1 mx-3">Link to YouTube channel</p>
-                    <input id="link" class="focus:outline-none rounded-md shadow-md w-96 h-10 border-2 border-blue-400 p-2 focus:border-blue-500" type="text" placeholder="https://www.youtube.com/@MrBeast">
+                    <input id="link" class="focus:outline-none rounded-md shadow-md w-full max-w-[32rem] h-10 border-2 border-blue-400 p-2 focus:border-blue-500" type="text" placeholder="https://www.youtube.com/@MrBeast">
                 </form>
                 <div>
-                    <p class="text-center mb-1 mx-3 text-lg font-semibold mt-5">Category</p>
-                    <div class="flex flex-wrap w-96 justify-center mb-2">
+                    <p class="text-center mb-2 mx-3 text-lg font-semibold mt-5">Category</p>
+                    <div class="flex flex-wrap w-full max-w-[32rem] justify-center mb-2">
                         <label class="cursor-pointer mx-1 my-1">
                             <input id="Film & Animation" type="radio" class="peer sr-only" name="options" checked/>
                             <div class="rounded-2xl bg-white p-2 text-teal-500 border-2 border-teal-500 transition-all peer-checked:text-white peer-checked:bg-teal-500">
@@ -256,7 +260,7 @@
                 <div class="justify-center mt-7 hidden" id="loading">
                     <span class="loader"></span>
                 </div>
-                <div class="w-96 mt-4 hidden" id="output">
+                <div class="w-full max-w-[32rem] mt-4 hidden" id="output">
                     <p class="text-center text-2xl font-semibold mb-3">You will get <span id="views">179</span> views</p>
                     <p class="text-center font-semibold">Our recommendations for improvement</p>
                     <p class="text-center p-2" id="recommendations"></p>

@@ -14,8 +14,11 @@ TEST_RECOMMENDATION = "It is a long established fact that a reader will be distr
 
 
 class PodcastDesc(pydantic.BaseModel):
+    title: str
     description: str
+    tags: list[str]
     link: str | None
+    category: str
 
 
 class SummationResponse(pydantic.BaseModel):
@@ -38,8 +41,10 @@ async def read_root(request: fastapi.Request):
 async def get_summation(podcast_desc: PodcastDesc):
     if len(podcast_desc.description) == 0:
         return fastapi.HTTPException(400, "No description provided")
+    if len(podcast_desc.title) == 0:
+        return fastapi.HTTPException(400, "No description provided")
     response = SummationResponse(
-        views = TEST_VIEWS,
+        views=TEST_VIEWS,
         recommendation=TEST_RECOMMENDATION,
     )
     return response
