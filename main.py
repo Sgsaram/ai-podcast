@@ -93,10 +93,5 @@ async def get_summation(podcast_desc: PodcastDesc):
         views=result['views_prediction'],
         recommendation=result['llama_response'],
     )
-
-    response = SummationResponse(
-        views=TEST_VIEWS,
-        recommendation=TEST_RECOMMENDATION,
-    )
     return response
 
