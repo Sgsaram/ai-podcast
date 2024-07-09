@@ -46,7 +46,7 @@ async function handle_button_get() {
     const input_text = description.value;
     if (input_text.trim().length == 0) {
         description.classList.add("border-rose-500");
-        description.classList.remove("border-blue-300");
+        description.classList.remove("border-blue-400");
         required.classList.remove("hidden");
         bad_desc = true;
         return;
@@ -105,7 +105,7 @@ description.addEventListener(
     () => {
         if (bad_desc) {
             required.classList.add("hidden");
-            description.classList.add("border-blue-300");
+            description.classList.add("border-blue-400");
             description.classList.remove("border-rose-500");
             bad_desc = false;
         }
