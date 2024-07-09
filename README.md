@@ -1,5 +1,5 @@
 
-# Youtube Podcast Analyzer _(production repo)_
+# Youtube Podcast Analyzer
 
 ![example](./readme-imgs/preview.png)
 
