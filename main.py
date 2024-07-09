@@ -8,9 +8,7 @@ import fastapi.templating
 
 import pydantic
 
-# WARNING: Uncomment this section for PROD mode
-
-# from models_api.main_module import ModelModule
+from models_api.main_module import ModelModule
 
 BASE_DIR = os.path.dirname(os.path.realpath(__file__));
 TEST_VIEWS = "SERVER"
@@ -65,9 +63,7 @@ class SummationResponse(pydantic.BaseModel):
     recommendation: str
 
 
-# WARNING: Uncomment this section for PROD mode
-
-# module = ModelModule()
+module = ModelModule()
 
 app = fastapi.FastAPI()
 
@@ -87,20 +83,16 @@ async def get_summation(podcast_desc: PodcastDesc):
     if len(podcast_desc.title) == 0:
         return fastapi.HTTPException(400, "No description provided")
     
-    # WARNING: Uncomment this section for PROD mode
+    result = module.get_result(title=podcast_desc.title, 
+                               description=podcast_desc.description,
+                               tags=podcast_desc.tags,
+                               link=podcast_desc.link,
+                               category=cat2id[podcast_desc.category])
 
-    # result = module.get_result(title=podcast_desc.title, 
-    #                            description=podcast_desc.description,
-    #                            tags=podcast_desc.tags,
-    #                            link=podcast_desc.link,
-    #                            category=cat2id[podcast_desc.category])
-
-    # WARNING: Uncomment this section for PROD mode
-
-    # response = SummationResponse(
-    #     views=result['views_prediction'],
-    #     recommendation=result['llama_response'],
-    # )
+    response = SummationResponse(
+        views=result['views_prediction'],
+        recommendation=result['llama_response'],
+    )
 
     response = SummationResponse(
         views=TEST_VIEWS,
