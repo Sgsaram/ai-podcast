@@ -20,7 +20,7 @@ The technology stack we use:
 ## Installation and Running
 1. Copy repository:
 ```sh
-git clone https://github.com/Sgsaram/ai-podcast
+git clone https://github.com/Sgsaram/ai-podcast.git
 ```
 2. Install requirements:
 ```sh
