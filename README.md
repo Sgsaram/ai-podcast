@@ -18,23 +18,34 @@ The technology stack we use:
 - ✨Magic ✨
 
 ## Installation and Running
-1. Copy repository
+1. Copy repository:
 ```sh
 git clone
 ```
-2. Install requirements.txt
+2. Install requirements:
 ```sh
 pip install -r requirements.txt
 ```
-3. In order to run this repisitory you should have Meta-Llama-3-8B-Instruct installed on your local machine. We recommend you to use Llama Studio to start its server.
-start some server
-4. Start backend server to be able to get localhost page
+3. Download spacy `en_core_web_md` nlp model:
+```sh
+spacy download en_core_web_md
+```
+4. Download [ollama server](https://github.com/ollama/ollama)
+5. Download `llama3-8b-instruct` model:
+```sh
+ollama pull llama3:8b-instruct-q4_K_M
+```
+5. Start `llama3-8b-instruct` server:
+```sh
+ollama run llama3:8b-instruct-q4_K_M
+```
+6. Start web server:
 ```sh
 fastapi dev main.py
 ```
-5. Open your browser and type 
+7. Open your browser and type:
 ```sh
-localhost:8000
+http://127.0.0.1:8000
 ```
 ## Thoughts and Comparison
 Our team has came to the conclusion that it would be cool to have an opportunity to see your chances to go viral. We've done some research and found out that nobody has done something outstanding in that field. There are some research papers that use statistical tests to check some hypothesis. To be precise, it was hard to even find datasets big enough to train our model. So the model was trained on data that was scraped using official Youtube API. Youtube API has certain quota for the number of youtube video to be scraped. Our future plans is to collect more data increase metric score. 

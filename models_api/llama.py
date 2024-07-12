@@ -24,7 +24,7 @@ SYSTEM_PROMPT = '''You are an AI assistant that helps users determine the popula
 
 def complete_request(prompt: str, predicted_views_count: int, subscriber_count: int, title: str) -> str:
     completion = ollama.chat(
-    model="koesn/llama3-8b-instruct:Q4_K_M",
+    model="llama3:8b-instruct-q4_K_M",
     messages=[
         {"role": "system", "content": SYSTEM_PROMPT},
         {"role": "user", "content":
