@@ -62,7 +62,7 @@ We are providing mentioned articles below:
 *Authors*: Ignatiy Arkhipov, Ivan Gronsky, Miron Labus, Grigoriy Gavrilov
 
 Want to contribute? Great! Fork this repository or message us using contacts below.
-
+We'll provide them later
 ## License
 
 GPL-3.0
