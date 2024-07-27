@@ -59,7 +59,7 @@ We are providing mentioned articles below:
 
 
 ## Development
-*Authors*: Ignatiy Arkhipov, Ivan Gronsky, Miron Labus, Grigoriy Gavrilov.
+*Authors*: Ignatiy Arkhipov, Ivan Gronsky, Miron Labus, Grigoryy Gavrilov.
 
 Want to contribute? Great! Fork this repository or message us using contacts below.
 We'll provide them later.
